@@ -15,6 +15,8 @@
 #if defined(__GLIBC__) && __GLIBC__ == 2 && __GLIBC_MINOR__ > 0
 /* glibc 2.1 or newer -> pread/pwrite supported automatically */
 
+#elif defined(__BIONIC__)
+/* has pread call */
 #elif defined(i386) && defined(__GLIBC__)
 /* glibc 2.0 on i386 -> call syscalls directly */
 #include <asm/unistd.h>
