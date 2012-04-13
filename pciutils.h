@@ -6,8 +6,13 @@
  *	Can be freely distributed and used under the terms of the GNU GPL.
  */
 
-#include "lib/pci.h"
-#include "lib/sysdep.h"
+#ifdef ANDROID
+    #include "pci.h"
+    #include "sysdep.h"
+#else
+    #include "lib/pci.h"
+    #include "lib/sysdep.h"
+#endif
 
 #ifdef PCI_OS_WINDOWS
 #include "compat/getopt.h"
