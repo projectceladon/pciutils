@@ -22,7 +22,7 @@ LOCAL_PATH := $(PCIUTILS_LOCAL_PATH)
 # lspci
 include $(CLEAR_VARS)
 LOCAL_MODULE:= lspci
-LOCAL_MODULE_TAGS:= debug
+LOCAL_MODULE_TAGS:= optional
 LOCAL_MODULE_PATH:= $(TARGET_OUT_OPTIONAL_EXECUTABLES)
 LOCAL_SRC_FILES:= lspci.c common.c ls-caps.c ls-ecaps.c ls-kernel.c ls-map.c ls-tree.c ls-vpd.c
 LOCAL_C_INCLUDES:= $(INCLUDES)
@@ -33,7 +33,7 @@ include $(BUILD_EXECUTABLE)
 include $(CLEAR_VARS)
 LOCAL_MODULE:= pci.ids
 LOCAL_MODULE_CLASS:= ETC
-LOCAL_MODULE_TAGS:= debug
+LOCAL_MODULE_TAGS:= optional
 LOCAL_MODULE_PATH:= $(TARGET_OUT_ETC)/pciutils
 LOCAL_SRC_FILES:= pci.ids
 include $(BUILD_PREBUILT)
