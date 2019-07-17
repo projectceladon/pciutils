@@ -62,7 +62,7 @@ set_pci_method(struct pci_access *pacc, char *arg)
   if (!strcmp(arg, "help"))
     {
       printf("Known PCI access methods:\n\n");
-      for (i=0; name = pci_get_method_name(i); i++)
+      for (i=0; (name = pci_get_method_name(i)) != NULL; i++)
 	if (name[0])
 	  printf("%s\n", name);
       exit(0);
@@ -83,7 +83,7 @@ set_pci_option(struct pci_access *pacc, char *arg)
     {
       struct pci_param *p;
       printf("Known PCI access parameters:\n\n");
-      for (p=NULL; p=pci_walk_params(pacc, p);)
+      for (p=NULL; (p=pci_walk_params(pacc, p)) != NULL;)
 	printf("%-20s %s (%s)\n", p->param, p->help, p->value);
       exit(0);
     }

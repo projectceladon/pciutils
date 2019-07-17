@@ -206,7 +206,7 @@ sysfs_fill_slots(struct pci_access *a)
   if (!dir)
     return;
 
-  while (entry = readdir(dir))
+  while ((entry = readdir(dir)) != NULL)
     {
       char namebuf[OBJNAMELEN], buf[16];
       FILE *file;

@@ -76,7 +76,7 @@ do_map_bus(int bus)
 		  if (verbose)
 		    printf("Discovered device %02x:%02x.%d\n", bus, dev, func);
 		  bi->exists = 1;
-		  if (d = scan_device(p))
+		  if ((d = scan_device(p)) != NULL)
 		    {
 		      show_device(d);
 		      switch (get_conf_byte(d, PCI_HEADER_TYPE) & 0x7f)

@@ -67,7 +67,7 @@ pci_free_params(struct pci_access *acc)
 {
   struct pci_param *p;
 
-  while (p = acc->params)
+  while ((p = acc->params) != NULL)
     {
       acc->params = p->next;
       if (p->value_malloced)

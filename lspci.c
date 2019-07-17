@@ -150,7 +150,7 @@ scan_devices(void)
 
   pci_scan_bus(pacc);
   for (p=pacc->devices; p; p=p->next)
-    if (d = scan_device(p))
+    if ((d = scan_device(p)) != NULL)
       {
 	d->next = first_dev;
 	first_dev = d;
@@ -291,7 +291,7 @@ show_terse(struct device *d)
 	 pci_lookup_name(pacc, devbuf, sizeof(devbuf),
 			 PCI_LOOKUP_VENDOR | PCI_LOOKUP_DEVICE,
 			 p->vendor_id, p->device_id));
-  if (c = get_conf_byte(d, PCI_REVISION_ID))
+  if ((c = get_conf_byte(d, PCI_REVISION_ID)) != 0)
     printf(" (rev %02x)", c);
   if (verbose)
     {
@@ -846,9 +846,9 @@ show_machine(struct device *d)
 	}
       if (p->phy_slot)
 	printf("PhySlot:\t%s\n", p->phy_slot);
-      if (c = get_conf_byte(d, PCI_REVISION_ID))
+      if ((c = get_conf_byte(d, PCI_REVISION_ID)) != 0)
 	printf("Rev:\t%02x\n", c);
-      if (c = get_conf_byte(d, PCI_CLASS_PROG))
+      if ((c = get_conf_byte(d, PCI_CLASS_PROG)) != 0)
 	printf("ProgIf:\t%02x\n", c);
       if (opt_kernel)
 	show_kernel_machine(d);
@@ -859,9 +859,9 @@ show_machine(struct device *d)
       print_shell_escaped(pci_lookup_name(pacc, classbuf, sizeof(classbuf), PCI_LOOKUP_CLASS, p->device_class));
       print_shell_escaped(pci_lookup_name(pacc, vendbuf, sizeof(vendbuf), PCI_LOOKUP_VENDOR, p->vendor_id, p->device_id));
       print_shell_escaped(pci_lookup_name(pacc, devbuf, sizeof(devbuf), PCI_LOOKUP_DEVICE, p->vendor_id, p->device_id));
-      if (c = get_conf_byte(d, PCI_REVISION_ID))
+      if ((c = get_conf_byte(d, PCI_REVISION_ID)) != 0)
 	printf(" -r%02x", c);
-      if (c = get_conf_byte(d, PCI_CLASS_PROG))
+      if ((c = get_conf_byte(d, PCI_CLASS_PROG)) != 0)
 	printf(" -p%02x", c);
       if (sv_id && sv_id != 0xffff)
 	{
@@ -936,11 +936,11 @@ main(int argc, char **argv)
 	pacc->buscentric = 1;
 	break;
       case 's':
-	if (msg = pci_filter_parse_slot(&filter, optarg))
+	if ((msg = pci_filter_parse_slot(&filter, optarg)) != NULL)
 	  die("-s: %s", msg);
 	break;
       case 'd':
-	if (msg = pci_filter_parse_id(&filter, optarg))
+	if ((msg = pci_filter_parse_id(&filter, optarg)) != NULL)
 	  die("-d: %s", msg);
 	break;
       case 'x':
