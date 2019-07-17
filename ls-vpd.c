@@ -161,8 +161,8 @@ cap_vpd(struct device *d)
 		break;
 
 	      /* Is this item known? */
-	      for (item=vpd_items; item->id1 && item->id1 != id1 ||
-				   item->id2 && item->id2 != id2; item++)
+	      for (item=vpd_items; (item->id1 && item->id1 != id1) ||
+				   (item->id2 && item->id2 != id2); item++)
 		;
 
 	      /* Only read the first byte of the RV field because the
