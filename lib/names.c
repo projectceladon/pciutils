@@ -26,7 +26,7 @@ static char *id_lookup(struct pci_access *a, int flags, int cat, int id1, int id
 	}
       if (flags & PCI_LOOKUP_NETWORK)
         {
-	  if (name = pci_id_net_lookup(a, cat, id1, id2, id3, id4))
+	  if ((name = pci_id_net_lookup(a, cat, id1, id2, id3, id4)) != NULL)
 	    {
 	      pci_id_insert(a, cat, id1, id2, id3, id4, name, SRC_NET);
 	      pci_mfree(name);

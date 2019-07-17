@@ -79,8 +79,8 @@ dump_init(struct pci_access *a)
 	*z-- = 0;
       len = z - buf + 1;
       mn = 0;
-      if (dump_validate(buf, "##:##.# ") && sscanf(buf, "%x:%x.%d", &bn, &dn, &fn) == 3 ||
-	  dump_validate(buf, "####:##:##.# ") && sscanf(buf, "%x:%x:%x.%d", &mn, &bn, &dn, &fn) == 4)
+      if ((dump_validate(buf, "##:##.# ") && sscanf(buf, "%x:%x.%d", &bn, &dn, &fn) == 3) ||
+	  (dump_validate(buf, "####:##:##.# ") && sscanf(buf, "%x:%x:%x.%d", &mn, &bn, &dn, &fn) == 4))
 	{
 	  dev = pci_get_dev(a, mn, bn, dn, fn);
 	  dump_alloc_data(dev, 256);
