@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include "lspci.h"
 
@@ -77,8 +78,10 @@ load_pcimap(void)
       if (sscanf(c, "%i%i%i%i%i%i",
 		 &e->vendor, &e->device,
 		 &e->subvendor, &e->subdevice,
-		 &e->class, &e->class_mask) != 6)
-	continue;
+		 &e->class, &e->class_mask) != 6) {
+          free(e);
+          continue;
+      }
       e->next = pcimap_head;
       pcimap_head = e;
       strcpy(e->module, line);
